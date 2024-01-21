@@ -18,5 +18,5 @@ Pasos para ejecutar el proyecto:
 2. Tomar la carpeta ```dist``` y desplegarla
 
 
-## Deploy en Netlify
-La app se puede encontrar en https://illustrious-queijadas-0b7ded.netlify.app/
+## Deploy en Netlify y GitHub Pages 
+La app se puede encontrar en https://illustrious-queijadas-0b7ded.netlify.app/ y https://efededece.github.io/todo_app/
