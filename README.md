@@ -1,7 +1,7 @@
 
 # TODO APP
 
-    Esta es una aplicación web de tareas para hacer, realizada con el material un curso de Fernando Herrera. En la programación hay 3 tecnologías fundamentales: JavaScript, NodeJS, Vite.
+Esta es una aplicación web de tareas para hacer, realizada con el material un curso de Fernando Herrera. En la programación hay 3 tecnologías fundamentales: JavaScript, NodeJS, Vite.
 
 
 
