@@ -1,11 +1,14 @@
 import html from './app.html?raw';
-import todoStore from '../store/todo_store.js';
-import { renderTodos } from './use_cases/render_todos.js';
+import todoStore, { Filters } from '../store/todo_store.js';
+import { renderTodos, renderPending } from './use_cases';
 
 
 const ElementsIDs = {
-  TodoList: '.todo-list',
-  NewTodoInput: '#new-todo-input'
+  ClearCompleted: '.clear-completed',
+  Filters: '.filters',
+  NewTodoInput: '#new-todo-input',
+  pendingCountLabel: '#pending-count',
+  TodoList: '.todo-list'
 }
 
 
@@ -20,8 +23,13 @@ export const App = ( elementId ) => {
 
     const todos = todoStore.getTodos( todoStore.getCurrentFilter() );
     renderTodos( ElementsIDs.TodoList, todos );
+    updatePendingCount();
   }
 
+
+  const updatePendingCount = () => {
+    renderPending( ElementsIDs.pendingCountLabel );
+  }
 
   // Cuando la función se llama
 
@@ -36,6 +44,9 @@ export const App = ( elementId ) => {
   // Referencias HTML (aparecen después de la renderización)
   const newDescriptionInput = document.querySelector(ElementsIDs.NewTodoInput);
   const todoListUL = document.querySelector(ElementsIDs.TodoList);
+  const clearCompletedButton = document.querySelector(ElementsIDs.ClearCompleted);
+  const filtersUl = document.querySelector(ElementsIDs.Filters);
+
 
   // Listeners
   newDescriptionInput.addEventListener('keyup', ( event ) => {
@@ -63,6 +74,50 @@ export const App = ( elementId ) => {
     displayTodos();
   })
 
+
+  clearCompletedButton.addEventListener('click', () => {
+
+      todoStore.deleteCompleted();
+
+      displayTodos();
+
+  })
+
+
+  filtersUl.addEventListener('click', ( event ) => {
+    console.log(event);
+    const element = event.target;
+    const elementsAdja = filtersUl.children;
+    
+    if ( element.classList.contains('filtro') /* && !element.classList.contains('selected')  */){
+
+      for( let i = 0; i < elementsAdja.length; i++ ) {
+        console.log(elementsAdja[i].children);
+        elementsAdja[i].children[0].classList.contains('selected') ? elementsAdja[i].children[0].classList.remove('selected') : '';
+      };
+
+      element.classList.add('selected');
+      console.log(element.innerText);
+      
+      switch( element.innerText ){
+        case 'Pendientes':
+          console.log('pending');
+          todoStore.setFilter(Filters.Pending);
+          break;
+        case 'Completados':
+          console.log('completed');
+          todoStore.setFilter(Filters.Completed);
+          break;
+        default:
+          console.log('all');
+          todoStore.setFilter(Filters.All);
+      }
+
+
+      displayTodos();
+    }
+
+  })
 
 
 

@@ -1,21 +1,19 @@
 import { Todo } from "../todos/models/todo_model";
 
 
-const Filters = {
+export const Filters = {
   All: 'all',
-  Completed: 'Completed',
-  Pending: 'Pending'
+  Completed: 'completed',
+  Pending: 'pending'
 }
 
 // El state va a permitir aceder a sus elementos en cualquier lugar de la app
 // es decir acceder al arreglo de TODOS y los filtros
 const state = {
   todos: [
-    new Todo('Piedra del alma'),
-    new Todo('Piedra del infinito'),
-    new Todo('Piedra del tiempo'),
-    new Todo('Piedra del poder'),
-    new Todo('Piedra de realidad')
+    new Todo('Tarea 1'),
+    new Todo('Tarea 2'),
+    new Todo('Tarea 3'),
   ],
   filter: Filters.All
 }
@@ -96,12 +94,13 @@ const toggleTodo = ( todoId ) => {
 
 const deleteTodo = ( todoId ) => {
   state.todos = state.todos.filter( todo => todo.id !== todoId );
-  saveStateToLocalStorage()
+  saveStateToLocalStorage();
 }
 
 
-const deleteCompleted = ( todoId ) => {
-  state.todos = state.todos.filter( todo => todo.done );
+const deleteCompleted = () => {
+  state.todos = state.todos.filter( todo => !todo.done );
+  saveStateToLocalStorage();
 }
 
 /**
