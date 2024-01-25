@@ -19,4 +19,4 @@ Pasos para ejecutar el proyecto:
 
 
 ## Deploy en Netlify y GitHub Pages 
-La app se puede encontrar en https://illustrious-queijadas-0b7ded.netlify.app/ y https://efededece.github.io/todo_app/
+La app se puede encontrar funcionando en [Netlify](https://illustrious-queijadas-0b7ded.netlify.app/) y [GitHub](https://efededece.github.io/todo_app/)
